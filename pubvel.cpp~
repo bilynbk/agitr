@@ -9,19 +9,20 @@ int main(int argc, char **argv)  {
     ros::init(argc, argv, "publish_velocity");
     ros::NodeHandle nh;
 
-    // Create a publisher object
+    // Create a publisher object, argument "1000" means the max number of the waiting messages 
     ros::Publisher pub = nh.advertise<geometry_msgs::Twist>("turtle1/cmd_vel",1000);
 
     // seed the random number generator.
     srand(time(0));
 
     // Loop at 2Hz until the node is shut down.
-    ros::Rate rate(2);
-    while(ros::ok()) {
-         // Create and fill in the message. The other four fields, which are ignored by turtlesim, default to 0
-         geometry_msgs::Twist msg;
-         msg.linear.x = double(rand())/double(RAND_MAX);
-         msg.angular.z = 2*double(rand())/double(RAND_MAX)-1;
+    ros::Rate rate(2); // how rapid the loop runs. rate(2) means 2 iterations per second
+    while(ros::ok()) {  // check if the ROS node is still standing... 
+         // Create and fill in the message. The other four fields, 
+    	 // which are ignored by turtlesim, default to 0
+         geometry_msgs::Twist msg; // name of the message
+         msg.linear.x = double(rand())/double(RAND_MAX); // create linear x vel around 0-->1
+         msg.angular.z = 2*double(rand())/double(RAND_MAX)-1; // create angular z vel around -1 -->1
          
          // Publish the message
          pub.publish(msg);
