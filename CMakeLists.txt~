@@ -123,6 +123,7 @@ catkin_package(
 
 ## Declare a C++ executable
 #add_executable(agitr_node src/agitr_node.cpp)
+   add_executable(reverse_cmd_vel reverse_cmd_vel.cpp)
    add_executable(throttle throttle.cpp)
    add_executable(once once.cpp)
    add_executable(count count.cpp)
@@ -144,6 +145,7 @@ catkin_package(
   target_link_libraries(count ${catkin_LIBRARIES})
   target_link_libraries(once ${catkin_LIBRARIES})
   target_link_libraries(throttle ${catkin_LIBRARIES})
+  target_link_libraries(reverse_cmd_vel ${catkin_LIBRARIES})
 
 #############
 ## Install ##
